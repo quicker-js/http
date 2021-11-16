@@ -42,4 +42,14 @@ export interface ApiPropertyMetadataImpl {
    * 是否必须
    */
   required: boolean;
+
+  /**
+   * 类型
+   */
+  type?: string;
+
+  /**
+   * 格式化类型
+   */
+  format?: string;
 }
