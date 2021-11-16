@@ -46,10 +46,10 @@ export interface ApiRequestMetadataImpl {
   /**
    * 场景
    */
-  scene: string;
+  scene?: string;
 
   /**
    * 响应类型
    */
-  response: ClassConstructor;
+  response?: ClassConstructor;
 }

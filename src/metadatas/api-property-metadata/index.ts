@@ -31,17 +31,17 @@ export interface ApiPropertyMetadataImpl {
   /**
    * 描述
    */
-  description: string;
+  description?: string;
 
   /**
    * 位置
    */
-  in: 'path' | 'query' | 'header';
+  in?: 'path' | 'query' | 'header';
 
   /**
    * 是否必须
    */
-  required: boolean;
+  required?: boolean;
 
   /**
    * 类型
