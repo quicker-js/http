@@ -1,6 +1,6 @@
 {
   "name": "@quicker-js/http",
-  "version": "0.0.1-dev.2021111301",
+  "version": "0.0.1-dev.2021111701",
   "description": "The HTTP module takes the corresponding data from the class-transformer conversion instance and sends a request to the server. This module uses Axios.",
   "main": "dist/cjs",
   "types": "dist/types",
@@ -54,12 +54,7 @@
   },
   "dependencies": {
     "@quicker-js/class-transformer": "^0.0.1-dev.2021111305",
-    "@types/validator": "^13.6.6",
     "axios": "^0.24.0",
-    "chalk": "^4.1.2",
-    "commander": "^8.3.0",
-    "moment": "^2.29.1",
-    "tslib": "^2.3.1",
-    "validator": "^13.7.0"
+    "tslib": "^2.3.1"
   }
 }
