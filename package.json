@@ -1,6 +1,6 @@
 {
   "name": "@quicker-js/http",
-  "version": "0.0.1-dev.2021111704",
+  "version": "0.0.1-dev.2021111705",
   "description": "The HTTP module takes the corresponding data from the class-transformer conversion instance and sends a request to the server. This module uses Axios.",
   "main": "dist/cjs",
   "types": "dist/types",
