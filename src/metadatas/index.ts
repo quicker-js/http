@@ -21,3 +21,4 @@
  */
 
 export * from './api-request-metadata';
+export * from './api-property-metadata';
