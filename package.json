@@ -1,6 +1,6 @@
 {
   "name": "@quicker-js/http",
-  "version": "0.0.1-dev.2021111701",
+  "version": "0.0.1-dev.2021111702",
   "description": "The HTTP module takes the corresponding data from the class-transformer conversion instance and sends a request to the server. This module uses Axios.",
   "main": "dist/cjs",
   "types": "dist/types",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/quicker-js/swagger-generator.git"
+    "url": "git+https://github.com/quicker-js/http.git"
   },
   "keywords": [
     "swagger-generator"
@@ -27,9 +27,9 @@
   "author": "YunlongRan<549510622@qq.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/quicker-js/swagger-generator/issues"
+    "url": "https://github.com/quicker-js/http/issues"
   },
-  "homepage": "https://github.com/quicker-js/swagger-generator#readme",
+  "homepage": "https://github.com/quicker-js/http#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
