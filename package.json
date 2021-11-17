@@ -1,6 +1,6 @@
 {
   "name": "@quicker-js/http",
-  "version": "0.0.1-dev.2021111712",
+  "version": "0.0.1-dev.2021111713",
   "description": "The HTTP module takes the corresponding data from the class-transformer conversion instance and sends a request to the server. This module uses Axios.",
   "main": "dist/cjs",
   "types": "dist/types",
@@ -51,7 +51,7 @@
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
-    "@quicker-js/class-transformer": "^0.0.1-dev.2021111704",
+    "@quicker-js/class-transformer": "^0.0.1-dev.2021111705",
     "axios": "^0.24.0"
   }
 }
