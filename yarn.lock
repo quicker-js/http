@@ -99,10 +99,10 @@
   dependencies:
     rimraf "^3.0.2"
 
-"@quicker-js/class-transformer@^0.0.1-dev.2021111305":
-  version "0.0.1-dev.2021111305"
-  resolved "https://registry.npmmirror.com/@quicker-js/class-transformer/download/@quicker-js/class-transformer-0.0.1-dev.2021111305.tgz#9a094c8d017f646f9f8a4d42c989265085951e24"
-  integrity sha512-XMD+tuFDFg2OdaIJl8GEOLGuZLgL9mNCx2pkP4VA8TFhsA2GThLNY09qrf+Cd616f9GnyemnkcAMcwsszfJvTA==
+"@quicker-js/class-transformer@^0.0.1-dev.2021111702":
+  version "0.0.1-dev.2021111702"
+  resolved "https://registry.yarnpkg.com/@quicker-js/class-transformer/-/class-transformer-0.0.1-dev.2021111702.tgz#d13576dcd4a7d20e1fd0ea258da3a90d1996980b"
+  integrity sha512-HZeV/pt9r4vHicuzTWhBlIqLIlVkn5q8IG8OC1Fz5RDVPge9fZwiHckmhHrQ/eIMnuPqRzKm9Hg9BID6jZ/2/A==
   dependencies:
     "@quicker-js/class-decorator" "^0.0.1-dev.2021111301"
     tslib "^2.3.1"
@@ -197,11 +197,6 @@
   integrity sha1-Ov1q2JZ8d+Q3bFmKgt3Vj0bsRdY=
   dependencies:
     "@types/node" "*"
-
-"@types/validator@^13.6.6":
-  version "13.7.0"
-  resolved "https://registry.npmmirror.com/@types/validator/download/@types/validator-13.7.0.tgz#fa25263656d234473025c2d48249a900053c355a"
-  integrity sha512-+jBxVvXVuggZOrm04NR8z+5+bgoW4VZyLzUO+hmPPW1mVFL/HaitLAkizfv4yg9TbG8lkfHWVMQ11yDqrVVCzA==
 
 "@typescript-eslint/eslint-plugin@^4.33.0":
   version "4.33.0"
@@ -460,7 +455,7 @@ chalk@^2.0.0:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.2:
+chalk@^4.0.0, chalk@^4.1.0:
   version "4.1.2"
   resolved "https://registry.nlark.com/chalk/download/chalk-4.1.2.tgz?cache=0&sync_timestamp=1627646697260&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fchalk%2Fdownload%2Fchalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
   integrity sha1-qsTit3NKdAhnrrFr8CqtVWoeegE=
@@ -525,11 +520,6 @@ commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.npmmirror.com/commander/download/commander-2.20.3.tgz?cache=0&sync_timestamp=1634886396986&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcommander%2Fdownload%2Fcommander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha1-/UhehMA+tIgcIHIrpIA16FMa6zM=
-
-commander@^8.3.0:
-  version "8.3.0"
-  resolved "https://registry.npmmirror.com/commander/download/commander-8.3.0.tgz?cache=0&sync_timestamp=1634886396986&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fcommander%2Fdownload%2Fcommander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
-  integrity sha1-SDfqGy2me5xhamevuw+v7lZ7ymY=
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -1240,11 +1230,6 @@ mocha@^9.1.3:
     yargs-parser "20.2.4"
     yargs-unparser "2.0.0"
 
-moment@^2.29.1:
-  version "2.29.1"
-  resolved "https://registry.nlark.com/moment/download/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=
-
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.npmmirror.com/ms/download/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
@@ -1709,11 +1694,6 @@ v8-compile-cache@^2.0.3:
   version "2.3.0"
   resolved "https://registry.nlark.com/v8-compile-cache/download/v8-compile-cache-2.3.0.tgz#2de19618c66dc247dcfb6f99338035d8245a2cee"
   integrity sha1-LeGWGMZtwkfc+2+ZM4A12CRaLO4=
-
-validator@^13.7.0:
-  version "13.7.0"
-  resolved "https://registry.npmmirror.com/validator/download/validator-13.7.0.tgz?cache=0&sync_timestamp=1635822575658&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fvalidator%2Fdownload%2Fvalidator-13.7.0.tgz#4f9658ba13ba8f3d82ee881d3516489ea85c0857"
-  integrity sha1-T5ZYuhO6jz2C7ogdNRZInqhcCFc=
 
 vscode-textmate@5.2.0:
   version "5.2.0"
