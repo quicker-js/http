@@ -19,14 +19,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 import { Axios, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ClassMirror } from '@quicker-js/class-decorator';
-import { ApiRequestMetadata } from '../../metadatas';
-import { ApiPropertyMetadata } from '../../metadatas/api-property-metadata';
+import { ApiPropertyMetadata, ApiRequestMetadata } from '../../metadatas';
 import classTransformer from '@quicker-js/class-transformer';
-
-process.env.NODE_ENV = 'production';
 
 /**
  * @class HttpClient

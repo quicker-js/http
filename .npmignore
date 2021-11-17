@@ -1,6 +1,8 @@
 *.log*
 *.lock
 tsconfig.prod.*
+.babelrc
+webpack.config.js
 
 node_modules/
 src/
