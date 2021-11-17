@@ -1,6 +1,6 @@
 {
   "name": "@quicker-js/http",
-  "version": "0.0.1-dev.2021111707",
+  "version": "0.0.1-dev.2021111708",
   "description": "The HTTP module takes the corresponding data from the class-transformer conversion instance and sends a request to the server. This module uses Axios.",
   "main": "dist/cjs",
   "types": "dist/types",
@@ -22,7 +22,8 @@
     "url": "git+https://github.com/quicker-js/http.git"
   },
   "keywords": [
-    "swagger-generator"
+    "http",
+    "axios"
   ],
   "author": "YunlongRan<549510622@qq.com>",
   "license": "MIT",
