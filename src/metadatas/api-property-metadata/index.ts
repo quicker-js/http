@@ -36,7 +36,7 @@ export interface ApiPropertyMetadataImpl {
   /**
    * 位置
    */
-  in?: 'path' | 'query' | 'header';
+  in?: 'path' | 'query' | 'header' | 'body';
 
   /**
    * 是否必须
