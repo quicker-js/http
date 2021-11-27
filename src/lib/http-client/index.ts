@@ -21,8 +21,9 @@
  */
 import { Axios, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ClassMirror } from '@quicker-js/class-decorator';
-import { ApiPropertyMetadata, ApiRequestMetadata } from '../../metadatas';
 import classTransformer from '@quicker-js/class-transformer';
+
+import { ApiPropertyMetadata, ApiRequestMetadata } from '../../metadatas';
 
 /**
  * @class HttpClient
