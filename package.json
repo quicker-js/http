@@ -18,6 +18,8 @@
     "url": "git+https://github.com/quicker-js/http.git"
   },
   "keywords": [
+    "quicker",
+    "quicker-js",
     "http",
     "axios"
   ],

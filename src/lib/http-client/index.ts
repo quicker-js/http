@@ -39,7 +39,7 @@ export class HttpClient extends Axios {
     config: AxiosRequestConfig<D> = {}
   ): Promise<R> {
     const classMirror = ClassMirror.reflect(data.constructor);
-    const filter = Array.from(classMirror.metadata).filter(
+    const filter = Array.from(classMirror.allMetadata).filter(
       (o) => o instanceof ApiRequestMetadata
     );
 
