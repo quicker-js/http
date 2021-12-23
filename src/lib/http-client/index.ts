@@ -106,33 +106,37 @@ export class HttpClient extends Axios {
   /**
    * 转换响应数据
    * @param metadata
-   * @param data
+   * @param response
    */
-  public static transform<T = any, M extends ApiRequestMetadata = any>(
-    metadata: M[],
-    data: T
-  ): T {
+  public static transform<
+    M extends ApiRequestMetadata = any,
+    T extends AxiosResponse = any
+  >(metadata: M[], response: T): T {
     metadata.forEach((o: ApiRequestMetadata) => {
       if (
         o.metadata.response &&
         (o.metadata.response as any).constructor === Function
       ) {
-        if (Array.isArray(data)) {
-          data = classTransformer.plainToInstanceList(
+        if (Array.isArray(response.data)) {
+          response.data = classTransformer.plainToInstanceList(
             o.metadata.response,
-            data,
+            response.data,
             {
               scene: o.metadata.scene,
             }
           ) as any;
         } else {
-          data = classTransformer.plainToInstance(o.metadata.response, data, {
-            scene: o.metadata.scene,
-          });
+          response.data = classTransformer.plainToInstance(
+            o.metadata.response,
+            response.data,
+            {
+              scene: o.metadata.scene,
+            }
+          );
         }
       }
     });
-    return data;
+    return response;
   }
 
   /**
@@ -147,8 +151,7 @@ export class HttpClient extends Axios {
     const parseConfig = HttpClient.parseConfig(data, config);
     try {
       const response = await this.request(parseConfig.config);
-      response.data = HttpClient.transform(parseConfig.metadata, response.data);
-      return response;
+      return HttpClient.transform(parseConfig.metadata, response);
     } catch (e) {
       throw e;
     }
