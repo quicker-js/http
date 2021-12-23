@@ -19,11 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
 import { Axios, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { ClassMirror } from '@quicker-js/class-decorator';
 import classTransformer from '@quicker-js/class-transformer';
 
 import { ApiPropertyMetadata, ApiRequestMetadata } from '../../metadatas';
+
+import defaults from 'axios/lib/defaults';
+import mergeConfig from 'axios/lib/core/mergeConfig';
 
 /**
  * @class HttpClient
@@ -121,6 +125,6 @@ export class HttpClient extends Axios {
    * @param config
    */
   public static create(config?: AxiosRequestConfig): HttpClient {
-    return new HttpClient(config);
+    return new HttpClient(mergeConfig(defaults, config));
   }
 }
