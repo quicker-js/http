@@ -34,14 +34,25 @@ import mergeConfig from 'axios/lib/core/mergeConfig';
  */
 export class HttpClient extends Axios {
   /**
-   * 发起请求
-   * @param data 此字段必须是带有@ApiRequest的class实例
+   * 创建HttpClient实例
    * @param config
    */
-  public async fetch<T = any, R = AxiosResponse<T>, D extends {} = any>(
+  public static create(config?: AxiosRequestConfig): HttpClient {
+    return new HttpClient(mergeConfig(defaults, config));
+  }
+
+  /**
+   * 解析请求参数
+   * @param data
+   * @param config
+   */
+  public static parseConfig<D extends {} = any>(
     data: D,
     config: AxiosRequestConfig<D> = {}
-  ): Promise<R> {
+  ): {
+    config: AxiosRequestConfig<D>;
+    metadata: ApiRequestMetadata[];
+  } {
     const classMirror = ClassMirror.reflect(data.constructor);
     const filter = Array.from(classMirror.allMetadata).filter(
       (o) => o instanceof ApiRequestMetadata
@@ -83,48 +94,67 @@ export class HttpClient extends Axios {
         config.params = newData;
       }
     });
-
     if (!filter.length) {
-      return Promise.reject('Invalid ApiRequestMetadata.');
+      throw new TypeError('Invalid ApiRequestMetadata.');
     }
 
-    try {
-      const response = await this.request(config);
-      filter.forEach((o: ApiRequestMetadata) => {
-        if (
-          o.metadata.response &&
-          (o.metadata.response as any).constructor === Function
-        ) {
-          if (Array.isArray(response.data)) {
-            response.data = classTransformer.plainToInstanceList(
-              o.metadata.response,
-              response.data,
-              {
-                scene: o.metadata.scene,
-              }
-            );
-          } else {
-            response.data = classTransformer.plainToInstance(
-              o.metadata.response,
-              response.data,
-              {
-                scene: o.metadata.scene,
-              }
-            );
-          }
-        }
-      });
-      return response as any;
-    } catch (e) {
-      throw e;
-    }
+    return {
+      config,
+      metadata: filter,
+    };
   }
 
   /**
-   * 创建HttpClient实例
+   * 转换响应数据
+   * @param metadata
+   * @param response
+   */
+  public static transform<
+    T extends AxiosResponse = any,
+    M extends ApiRequestMetadata = ApiRequestMetadata
+  >(metadata: M[], response: T): T {
+    metadata.forEach((o: ApiRequestMetadata) => {
+      if (
+        o.metadata.response &&
+        (o.metadata.response as any).constructor === Function
+      ) {
+        if (Array.isArray(response.data)) {
+          response.data = classTransformer.plainToInstanceList(
+            o.metadata.response,
+            response.data,
+            {
+              scene: o.metadata.scene,
+            }
+          );
+        } else {
+          response.data = classTransformer.plainToInstance(
+            o.metadata.response,
+            response.data,
+            {
+              scene: o.metadata.scene,
+            }
+          );
+        }
+      }
+    });
+    return response;
+  }
+
+  /**
+   * 发起请求
+   * @param data 此字段必须是带有@ApiRequest的class实例
    * @param config
    */
-  public static create(config?: AxiosRequestConfig): HttpClient {
-    return new HttpClient(mergeConfig(defaults, config));
+  public async fetch<T = any, D extends {} = any>(
+    data: D,
+    config: AxiosRequestConfig<D> = {}
+  ): Promise<AxiosResponse<T, D>> {
+    const parseConfig = HttpClient.parseConfig(data, config);
+    try {
+      const response = await this.request(parseConfig.config);
+      return HttpClient.transform(parseConfig.metadata, response);
+    } catch (e) {
+      throw e;
+    }
   }
 }
