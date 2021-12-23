@@ -57,7 +57,6 @@ export class HttpClient extends Axios {
     const filter = Array.from(classMirror.allMetadata).filter(
       (o) => o instanceof ApiRequestMetadata
     );
-
     filter.forEach((o: ApiRequestMetadata) => {
       config.url = o.metadata.url;
       config.method = o.metadata.method;
@@ -107,37 +106,33 @@ export class HttpClient extends Axios {
   /**
    * 转换响应数据
    * @param metadata
-   * @param response
+   * @param data
    */
-  public static transform<
-    T extends AxiosResponse = any,
-    M extends ApiRequestMetadata = ApiRequestMetadata
-  >(metadata: M[], response: T): T {
+  public static transform<T = any, M extends ApiRequestMetadata = any>(
+    metadata: M[],
+    data: T
+  ): T {
     metadata.forEach((o: ApiRequestMetadata) => {
       if (
         o.metadata.response &&
         (o.metadata.response as any).constructor === Function
       ) {
-        if (Array.isArray(response.data)) {
-          response.data = classTransformer.plainToInstanceList(
+        if (Array.isArray(data)) {
+          data = classTransformer.plainToInstanceList(
             o.metadata.response,
-            response.data,
+            data,
             {
               scene: o.metadata.scene,
             }
-          );
+          ) as any;
         } else {
-          response.data = classTransformer.plainToInstance(
-            o.metadata.response,
-            response.data,
-            {
-              scene: o.metadata.scene,
-            }
-          );
+          data = classTransformer.plainToInstance(o.metadata.response, data, {
+            scene: o.metadata.scene,
+          });
         }
       }
     });
-    return response;
+    return data;
   }
 
   /**
@@ -152,7 +147,8 @@ export class HttpClient extends Axios {
     const parseConfig = HttpClient.parseConfig(data, config);
     try {
       const response = await this.request(parseConfig.config);
-      return HttpClient.transform(parseConfig.metadata, response);
+      response.data = HttpClient.transform(parseConfig.metadata, response.data);
+      return response;
     } catch (e) {
       throw e;
     }
