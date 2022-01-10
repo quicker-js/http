@@ -33,12 +33,20 @@ import mergeConfig from 'axios/lib/core/mergeConfig';
  * @class HttpClient
  */
 export class HttpClient extends Axios {
+  public allowTransformer = true;
+
   /**
    * 创建HttpClient实例
    * @param config
    */
-  public static create(config?: AxiosRequestConfig): HttpClient {
-    return new HttpClient(mergeConfig(defaults, config));
+  public static create(
+    config?: AxiosRequestConfig & { allowTransformer?: boolean }
+  ): HttpClient {
+    const httpClient = new HttpClient(mergeConfig(defaults, config));
+    if (config) {
+      httpClient.allowTransformer = Boolean(config.allowTransformer);
+    }
+    return httpClient;
   }
 
   /**
@@ -124,7 +132,7 @@ export class HttpClient extends Axios {
             {
               scene: o.metadata.scene,
             }
-          ) as any;
+          );
         } else {
           response.data = classTransformer.plainToInstance(
             o.metadata.response,
@@ -151,7 +159,10 @@ export class HttpClient extends Axios {
     const parseConfig = HttpClient.parseConfig(data, config);
     try {
       const response = await this.request(parseConfig.config);
-      return HttpClient.transform(parseConfig.metadata, response);
+      if (this.allowTransformer) {
+        return HttpClient.transform(parseConfig.metadata, response);
+      }
+      return response;
     } catch (e) {
       throw e;
     }
