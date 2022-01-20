@@ -21,6 +21,7 @@
  */
 
 import { PropertyMetadata } from '@quicker-js/class-decorator';
+import { LocaleLanguageKey } from '../../constants';
 
 /**
  * @class ApiPropertyMetadata
@@ -32,6 +33,11 @@ export interface ApiPropertyMetadataImpl {
    * 描述
    */
   description?: string;
+
+  /**
+   * 语言包
+   */
+  locale?: Partial<Record<LocaleLanguageKey, string>>;
 
   /**
    * 位置

@@ -21,6 +21,7 @@
  */
 
 import { ClassMetadata, ClassConstructor } from '@quicker-js/class-decorator';
+import { LocaleLanguageKey } from '../../constants';
 
 /**
  * @class ApiRequestMetadata
@@ -39,6 +40,11 @@ export interface ApiRequestMetadataImpl {
   description?: string;
 
   /**
+   * 语言包
+   */
+  locale?: Partial<Record<LocaleLanguageKey, string>>;
+
+  /**
    * 请求方法
    */
   method: 'post' | 'put' | 'get' | 'delete';
@@ -52,4 +58,9 @@ export interface ApiRequestMetadataImpl {
    * 响应类型
    */
   response?: ClassConstructor;
+
+  /**
+   * 请求类型
+   */
+  contentType?: string;
 }

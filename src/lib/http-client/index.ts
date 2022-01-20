@@ -62,28 +62,30 @@ export class HttpClient extends Axios {
     metadata: ApiRequestMetadata[];
   } {
     const classMirror = ClassMirror.reflect(data.constructor);
-    const filter = Array.from(classMirror.allMetadata).filter(
-      (o) => o instanceof ApiRequestMetadata
-    );
+    const filter = classMirror.getMetadata(ApiRequestMetadata);
+
     filter.forEach((o: ApiRequestMetadata) => {
       config.url = o.metadata.url;
       config.method = o.metadata.method;
+      config.headers = config.headers = {};
+      if (o.metadata.contentType) {
+        config.headers['Content-Type'] = o.metadata.contentType;
+      }
       const newData: Record<PropertyKey, any> = {};
       const propertyMirrors = classMirror.getPropertyMirrors(true);
       propertyMirrors.forEach((propertyMirror) => {
-        const value = data[propertyMirror.propertyKey as keyof D];
-        if (value !== undefined) {
+        const value = data[propertyMirror.propertyKey as keyof D] as any;
+        if (value !== undefined && value !== '') {
           propertyMirror.metadata.forEach((m) => {
             if (m instanceof ApiPropertyMetadata) {
               if (m.metadata.in === 'path') {
                 config.url = o.metadata.url.replace(
                   new RegExp(`{s*${propertyMirror.propertyKey as string}s*}`),
-                  value as any
+                  value
                 );
               } else if (m.metadata.in === 'header') {
                 config.headers = config.headers || {};
-                config.headers[propertyMirror.propertyKey as any] =
-                  value as any;
+                config.headers[propertyMirror.propertyKey as any] = value;
               } else {
                 newData[propertyMirror.propertyKey] = value;
               }
@@ -101,13 +103,13 @@ export class HttpClient extends Axios {
         config.params = newData;
       }
     });
-    if (!filter.length) {
+    if (!filter.size) {
       throw new TypeError('Invalid ApiRequestMetadata.');
     }
 
     return {
       config,
-      metadata: filter,
+      metadata: Array.from(filter),
     };
   }
 
