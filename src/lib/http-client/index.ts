@@ -72,11 +72,11 @@ export class HttpClient extends Axios {
         config.headers['Content-Type'] = o.metadata.contentType;
       }
       const newData: Record<PropertyKey, any> = {};
-      const propertyMirrors = classMirror.getPropertyMirrors(true);
+      const propertyMirrors = classMirror.getAllProperties();
       propertyMirrors.forEach((propertyMirror) => {
         const value = data[propertyMirror.propertyKey as keyof D] as any;
         if (value !== undefined && value !== '') {
-          propertyMirror.metadata.forEach((m) => {
+          propertyMirror.getAllMetadata().forEach((m) => {
             if (m instanceof ApiPropertyMetadata) {
               if (m.metadata.in === 'path') {
                 config.url = o.metadata.url.replace(
@@ -103,13 +103,13 @@ export class HttpClient extends Axios {
         config.params = newData;
       }
     });
-    if (!filter.size) {
+    if (!filter.length) {
       throw new TypeError('Invalid ApiRequestMetadata.');
     }
 
     return {
       config,
-      metadata: Array.from(filter),
+      metadata: filter,
     };
   }
 
