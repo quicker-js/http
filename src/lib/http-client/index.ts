@@ -33,8 +33,6 @@ import mergeConfig from 'axios/lib/core/mergeConfig';
  * @class HttpClient
  */
 export class HttpClient extends Axios {
-  public allowTransformer = true;
-
   /**
    * 创建HttpClient实例
    * @param config
@@ -148,6 +146,8 @@ export class HttpClient extends Axios {
     });
     return response;
   }
+
+  public allowTransformer = true;
 
   /**
    * 发起请求
